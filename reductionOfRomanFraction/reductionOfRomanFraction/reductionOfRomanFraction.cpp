@@ -27,27 +27,30 @@ int main(int argc, char** argv)
         cout << "Входной файл " << path << " невозможно открыть." << endl;
         return 0;
     }
-
+    
     //Считать строку с дробью из файла
-    string fraction;
 
+    
     getline(fin, fraction);
     cout << fraction << endl;
 
     fin.close();
-
+    
     string newFraction;
     try
     {
-    //Сократить дробь
-    newFraction = reductionOfRomanFraction(fraction);
+        //Сократить дробь
+        newFraction = reductionOfRomanFraction(fraction);
     }
 
     //Обработать исключения
     catch (int ex)
     {
+        if (ex == 1)
+            cout << "Ошибка в записи римской дроби!" << endl;
         if (ex == 7)
             cout << "Несократимая дробь!" << endl;
+        return 0;
     }
 
     //Записать сокращенную дробь в выходной файл
@@ -112,8 +115,33 @@ string reductionOfRomanFraction(string romanFraction)
     else return reducedFraction;
 }
 
-void isContentOfStringCorrect(string romanFraction) {
-
+void isContentOfStringCorrect(string romanFraction) 
+{
+    
+    bool isSlashFind = 0;
+    int lengthStr = size(romanFraction);
+    //Для каждого символа строки
+    for (int i = 0; i < lengthStr; i++)
+    {
+        /*Выбросить исключение, если найден символ, который не является символом M, D, C, L, X, V, I или /,
+        либо если символ деления найден, и текущий символ - /,
+        либо первый, или последний символ - /
+        */
+        if (strchr("MDCLXVI/", romanFraction[i])==0 || isSlashFind == 0 && romanFraction[i]=='/' || (romanFraction[lengthStr] == '/' || romanFraction[0] == '/'))
+        {
+            throw 1;
+        }
+        //Если найден символ /, установить флаг «символ деления найден»
+        if (romanFraction[i] == '/') 
+        {
+            isSlashFind = 1;
+        }
+    }
+    //Выбросить исключение, если не найден символ деления /
+    if (isSlashFind == 0) 
+    {
+        throw 1;
+    }
 }
 
 void isRomNumCorrect(string romNum) {
