@@ -242,7 +242,17 @@ int convertNumFromRomToDec(string romNum)
 
 int findGCD(int numerator, int denominator) 
 {
-    return 0;
+    //Пока числитель и знаменатель не равны нулю
+    while (numerator != 0 && denominator != 0)
+    {    
+        //Если числитель больше знаменателя, присвоить остаток от деления числителю
+        if (numerator > denominator) numerator %= denominator;
+
+        //Иначе присвоить остаток от деления знаменателю
+        else denominator %= numerator;
+    }
+    //Вернуть сумму числителя и знаменателя
+    return numerator + denominator;
 }
 
 string convertNumFromDecToRom(int decNum) 
