@@ -1,5 +1,6 @@
 ﻿#pragma once
 using namespace std;
+#include <map>
 
 /*! Сокращает римскую дробь
 *	\param[in] romanFraction - дробь в римской СС
@@ -41,3 +42,13 @@ int findGCD(int numerator, int denominator);
 *	\throw - (Выбрасывает исключения в случае ошибок)
 */
 string convertNumFromDecToRom(int decNum);
+
+map<char, int> romDecMap{
+    {'I', 1},
+    {'V', 5},
+    {'X', 10},
+    {'L', 50},
+    {'C', 100},
+    {'D', 500},
+    {'M', 1000}
+};

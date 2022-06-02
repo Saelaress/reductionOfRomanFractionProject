@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "reductionOfRomanFraction.h"
+#include <map>
 
 using namespace std;
 
@@ -27,10 +28,10 @@ int main(int argc, char** argv)
         cout << "Входной файл " << path << " невозможно открыть." << endl;
         return 0;
     }
-    
-    //Считать строку с дробью из файла
 
-    
+    //Считать строку с дробью из файла
+    string fraction;
+
     getline(fin, fraction);
     cout << fraction << endl;
 
@@ -48,6 +49,16 @@ int main(int argc, char** argv)
     {
         if (ex == 1)
             cout << "Ошибка в записи римской дроби!" << endl;
+        if (ex == 2)
+            cout << "Символы V,L,D не могут повторяться!" << endl;
+        if (ex == 3)
+            cout << "Символы I,X,C не могут повторяться больше 3х раз!" << endl;
+        if (ex == 4)
+            cout << "Недопустимы сочетания: IL, IC, ID, IM, VX, VL, VC, VD, VM, XD, XM, LC, LD, LM, DM" << endl;
+        if (ex == 5)
+            cout << "Больший символ не может находиться между двумя одинаковыми меньшими!" << endl;
+        if (ex == 6)
+            cout << "Больший символ не может быть записан после двух меньших!" << endl;
         if (ex == 7)
             cout << "Несократимая дробь!" << endl;
         return 0;
@@ -127,7 +138,8 @@ void isContentOfStringCorrect(string romanFraction)
         либо если символ деления найден, и текущий символ - /,
         либо первый, или последний символ - /
         */
-        if (strchr("MDCLXVI/", romanFraction[i])==0 || isSlashFind == 0 && romanFraction[i]=='/' || (romanFraction[lengthStr] == '/' || romanFraction[0] == '/'))
+        if (strchr("MDCLXVI/", romanFraction[i])==0 || isSlashFind == 1 && romanFraction[i]=='/' 
+            || (romanFraction[lengthStr] == '/' || romanFraction[0] == '/'))
         {
             throw 1;
         }
@@ -144,18 +156,65 @@ void isContentOfStringCorrect(string romanFraction)
     }
 }
 
-void isRomNumCorrect(string romNum) {
+void isRomNumCorrect(string romNum) 
+{
+    //Выбросить исключение, если строка содержит "VV", или "LL", или "DD".
+    if (romNum.find("VV") == 0 || romNum.find("LL") == 0 || romNum.find("DD") == 0)
+    {
+        throw 2;
+    }
 
+    //Выбросить исключение, если строка содержит "IIII", или "XXXX", или "CCCC".
+    if (romNum.find("IIII") == 0 || romNum.find("XXXX") == 0 || romNum.find("CCCC") == 0)
+    {
+        throw 3;
+    }
+
+    /*Выбросить исключение, если строка содержит "IL", или "IC", или "ID", или "IM", или "VX", или "VL", 
+    или "VC", или "VD", или "VM", или "XD", или "XM", или "LC", или "LD", или "LM", или "DM".
+    */
+    if (romNum.find("IL") == 0 || romNum.find("IC") == 0 || romNum.find("ID") == 0 || romNum.find("IM") == 0
+        || romNum.find("VX") == 0 || romNum.find("VL") == 0 || romNum.find("VC") == 0 || romNum.find("VD") == 0
+        || romNum.find("VM") == 0 || romNum.find("XD") == 0 || romNum.find("XM") == 0 || romNum.find("LC") == 0
+        || romNum.find("LD") == 0 || romNum.find("LM") == 0 || romNum.find("DM") == 0)
+    {
+        throw 4;
+    }
+    //Если в строке три или больше символов
+    int lengthRomNum = size(romNum);
+    if(lengthRomNum >= 3)
+    {
+        //Для каждого символа, начиная с третьего, до последнего
+        for (int i=2; i < lengthRomNum; i++)
+        {
+            //Выбросить исключение, если текущий символ, переведенный в ДСС меньше предыдущего и равен предпредыдущему
+            if (romDecMap.find(romNum[i])->second < romDecMap.find(romNum[i - 1])->second && 
+                romDecMap.find(romNum[i])->second == romDecMap.find(romNum[i - 2])->second)
+            {
+                throw 5;
+            }
+            //Выбросить исключение, если текущий символ, переведенный в ДСС, больше предыдущего и предпредыдущего символа,
+            if (romDecMap.find(romNum[i])->second > romDecMap.find(romNum[i - 1])->second &&
+                romDecMap.find(romNum[i])->second > romDecMap.find(romNum[i - 2])->second)
+            {
+                throw 6;
+            }
+        }
+    }
 }
 
-int convertNumFromRomToDec(string romNum) {
+int convertNumFromRomToDec(string romNum) 
+{
     return 0;
 }
 
-int findGCD(int numerator, int denominator) {
+int findGCD(int numerator, int denominator) 
+{
     return 0;
 }
 
-string convertNumFromDecToRom(int decNum) {
+string convertNumFromDecToRom(int decNum) 
+{
     return 0;
 }
+
