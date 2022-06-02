@@ -61,6 +61,8 @@ int main(int argc, char** argv)
             cout << "Больший символ не может быть записан после двух меньших!" << endl;
         if (ex == 7)
             cout << "Несократимая дробь!" << endl;
+        if (ex == 8)
+            cout << "Число больше максимально допустимого!" << endl;
         return 0;
     }
 
@@ -205,7 +207,37 @@ void isRomNumCorrect(string romNum)
 
 int convertNumFromRomToDec(string romNum) 
 {
-    return 0;
+    //Перевернуть строку
+    int length = size(romNum);
+
+    for (int i = 0, j = length - 1; i < j; i++, j--)
+    {
+        char temp = romNum[i];
+        romNum[i] = romNum[j];
+        romNum[j] = temp;
+    }
+    
+    //Считать искомым числом эквивалентное число в ДСС для первого символа
+    int decNum = romDecMap.find(romNum[0])->second;
+
+    //Для каждого символа строки, начиная со второго
+    for (int i = 1; i < length; i++)
+    {
+        //Найти эквивалентное число в ДСС
+        int equiDec = romDecMap.find(romNum[i])->second;
+
+        //Если это число равно 1 или 10 или 100 и меньше предыдущего, вычесть его из текущего значения искомого числа
+        if ((equiDec == 1 || equiDec == 10 || equiDec == 100) && equiDec < romDecMap.find(romNum[i-1])->second)
+        {
+            decNum -= equiDec;
+        }
+        //Иначе прибавить его к текущему значению искомого числа
+        else decNum += equiDec;
+    }
+    //Если искомое число больше 3999, выбросить исключение
+    if (decNum > 3999) throw 8;
+    //Иначе вернуть искомое число
+    else return decNum;
 }
 
 int findGCD(int numerator, int denominator) 
