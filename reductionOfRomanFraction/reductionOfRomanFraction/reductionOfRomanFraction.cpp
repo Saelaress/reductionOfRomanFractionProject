@@ -103,7 +103,7 @@ string reductionOfRomanFraction(string romanFraction)
     int GCD = findGCD(decNumerator, decDenominator);
 
     //Если НОД равен 1, и не равен знаменателю, выбросить исключение
-    if (GCD = 1)
+    if (GCD == 1)
     {
         throw 7;
     }
