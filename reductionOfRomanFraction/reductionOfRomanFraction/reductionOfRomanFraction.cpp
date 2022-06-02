@@ -257,6 +257,23 @@ int findGCD(int numerator, int denominator)
 
 string convertNumFromDecToRom(int decNum) 
 {
-    return 0;
+    //Разделить число по разрядам
+    int thousends = decNum / 1000;
+    int hundreds = decNum % 1000 / 100;
+    int tens = decNum % 100 / 10;
+    int units = decNum % 10;
+
+    //Домножить число разряда тысяч на 1000, сотен на 100, десятков на 10
+    thousends *= 1000;
+    hundreds *= 100;
+    tens *= 10;
+
+    //Получить римский эквивалент числа для тысяч, сотен, десятков и единиц
+    string thousendsRom = decRomMap.find(thousends)->second;
+    string hundredsRom = decRomMap.find(hundreds)->second;
+    string tensRom = decRomMap.find(tens)->second;
+    string unitsRom = decRomMap.find(units)->second;
+    //Вернуть строку, из суммы строк всех разрядов
+    return thousendsRom + hundredsRom + tensRom + unitsRom;
 }
 
