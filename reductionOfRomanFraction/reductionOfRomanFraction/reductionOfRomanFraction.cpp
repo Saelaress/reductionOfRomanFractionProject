@@ -2,9 +2,6 @@
 #include <string>
 #include <fstream>
 #include "reductionOfRomanFraction.h"
-//#include <map>
-
-//using namespace std;
 
 int main(int argc, char** argv)
 {
