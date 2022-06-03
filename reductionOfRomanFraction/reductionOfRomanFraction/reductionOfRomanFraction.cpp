@@ -2,9 +2,9 @@
 #include <string>
 #include <fstream>
 #include "reductionOfRomanFraction.h"
-#include <map>
+//#include <map>
 
-using namespace std;
+//using namespace std;
 
 int main(int argc, char** argv)
 {
@@ -141,7 +141,7 @@ string reductionOfRomanFraction(string romanFraction)
     int GCD = findGCD(decNumerator, decDenominator);
 
     //Если НОД равен 1, и не равен знаменателю, выбросить исключение
-    if (GCD == 1)
+    if (GCD == 1 && GCD != decDenominator)
     {
         throw 7;
     }
@@ -179,7 +179,7 @@ void isContentOfStringCorrect(string romanFraction)
         либо первый, или последний символ - /
         */
         if (strchr("MDCLXVI/", romanFraction[i])==0 || isSlashFind == 1 && romanFraction[i]=='/' 
-            || (romanFraction[lengthStr] == '/' || romanFraction[0] == '/'))
+            || (romanFraction[lengthStr-1] == '/' || romanFraction[0] == '/'))
         {
             throw 1;
         }
@@ -199,13 +199,13 @@ void isContentOfStringCorrect(string romanFraction)
 void isRomNumCorrect(string romNum) 
 {
     //Выбросить исключение, если строка содержит "VV", или "LL", или "DD".
-    if (romNum.find("VV") == 0 || romNum.find("LL") == 0 || romNum.find("DD") == 0)
+    if (romNum.find("VV") != -1 || romNum.find("LL") != -1 || romNum.find("DD") != -1)
     {
         throw 2;
     }
 
     //Выбросить исключение, если строка содержит "IIII", или "XXXX", или "CCCC".
-    if (romNum.find("IIII") == 0 || romNum.find("XXXX") == 0 || romNum.find("CCCC") == 0)
+    if (romNum.find("IIII") != -1 || romNum.find("XXXX") != -1 || romNum.find("CCCC") != -1)
     {
         throw 3;
     }
@@ -213,10 +213,10 @@ void isRomNumCorrect(string romNum)
     /*Выбросить исключение, если строка содержит "IL", или "IC", или "ID", или "IM", или "VX", или "VL", 
     или "VC", или "VD", или "VM", или "XD", или "XM", или "LC", или "LD", или "LM", или "DM".
     */
-    if (romNum.find("IL") == 0 || romNum.find("IC") == 0 || romNum.find("ID") == 0 || romNum.find("IM") == 0
-        || romNum.find("VX") == 0 || romNum.find("VL") == 0 || romNum.find("VC") == 0 || romNum.find("VD") == 0
-        || romNum.find("VM") == 0 || romNum.find("XD") == 0 || romNum.find("XM") == 0 || romNum.find("LC") == 0
-        || romNum.find("LD") == 0 || romNum.find("LM") == 0 || romNum.find("DM") == 0)
+    if (romNum.find("IL") != -1 || romNum.find("IC") != -1 || romNum.find("ID") != -1 || romNum.find("IM") != -1
+        || romNum.find("VX") != -1 || romNum.find("VL") != -1 || romNum.find("VC") != -1 || romNum.find("VD") != -1
+        || romNum.find("VM") != -1 || romNum.find("XD") != -1 || romNum.find("XM") != -1 || romNum.find("LC") != -1
+        || romNum.find("LD") != -1 || romNum.find("LM") != -1 || romNum.find("DM") != -1)
     {
         throw 4;
     }

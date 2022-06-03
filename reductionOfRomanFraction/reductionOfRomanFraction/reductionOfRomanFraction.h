@@ -43,7 +43,7 @@ int findGCD(int numerator, int denominator);
 */
 string convertNumFromDecToRom(int decNum);
 
-map<char, int> romDecMap{
+static map<char, int> romDecMap{
     {'I', 1},
     {'V', 5},
     {'X', 10},
@@ -53,7 +53,7 @@ map<char, int> romDecMap{
     {'M', 1000}
 };
 
-map<int, string> decRomMap{
+static map<int, string> decRomMap{
     {0, ""},
     {1, "I"},
     {2, "II"},
