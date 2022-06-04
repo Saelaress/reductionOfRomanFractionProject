@@ -1,6 +1,7 @@
 ﻿#pragma once
 using namespace std;
 #include <map>
+#include <string>
 
 /*! Сокращает римскую дробь
 *	\param[in] romanFraction - дробь в римской СС
