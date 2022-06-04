@@ -671,7 +671,7 @@ namespace testreductionOfRomanFraction
 			}
 		}
 
-		TEST_METHOD(LargerSymbolAfterTwoSmallerSymbols) //Больший символ находится между двумя одинаковыми меньшими символами
+		TEST_METHOD(LargerSymbolAfterTwoSmallerSymbols) //Больший символ находится после двух меньших символов
 		{
 			//Строка с исходной дробью
 			string fraction = "XXC/III";
