@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_isRomNumCorrect", "tes
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_convertNumFromRomToDec", "test_convertNumFromRomToDec\test_convertNumFromRomToDec.vcxproj", "{3466389F-FD7B-4C5F-A816-80519203243F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_findGCD", "test_findGCD\test_findGCD.vcxproj", "{CA16AB0B-963D-4CD6-9644-2152DA91A961}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{3466389F-FD7B-4C5F-A816-80519203243F}.Release|x64.Build.0 = Release|x64
 		{3466389F-FD7B-4C5F-A816-80519203243F}.Release|x86.ActiveCfg = Release|Win32
 		{3466389F-FD7B-4C5F-A816-80519203243F}.Release|x86.Build.0 = Release|Win32
+		{CA16AB0B-963D-4CD6-9644-2152DA91A961}.Debug|x64.ActiveCfg = Debug|x64
+		{CA16AB0B-963D-4CD6-9644-2152DA91A961}.Debug|x64.Build.0 = Debug|x64
+		{CA16AB0B-963D-4CD6-9644-2152DA91A961}.Debug|x86.ActiveCfg = Debug|Win32
+		{CA16AB0B-963D-4CD6-9644-2152DA91A961}.Debug|x86.Build.0 = Debug|Win32
+		{CA16AB0B-963D-4CD6-9644-2152DA91A961}.Release|x64.ActiveCfg = Release|x64
+		{CA16AB0B-963D-4CD6-9644-2152DA91A961}.Release|x64.Build.0 = Release|x64
+		{CA16AB0B-963D-4CD6-9644-2152DA91A961}.Release|x86.ActiveCfg = Release|Win32
+		{CA16AB0B-963D-4CD6-9644-2152DA91A961}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
